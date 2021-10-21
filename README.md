@@ -31,4 +31,6 @@ complete = subset(data.df,complete.cases(data.df)) #find those cases with no mis
 new=old[n1:n2,n3:n4]    #select the n1 through n2 rows of variables n3 through n4)
 which.max(object) # gives the index of the hightest value
 ```
-Part 2: 
+## Part 2: Data Wrangling and Tidy data
+
+## Part 3: Mapping in R
