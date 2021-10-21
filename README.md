@@ -1,7 +1,18 @@
-# R Training for UWA Bangladeshi Society: Session2
-This repository is for the codes, data and tutorials for Session 2 of R for UWA Bangladeshi Society 
-## Part 1: Housekeeping and Handy tools for starting a R session
-The following commands can be useful when starting a new R session
+# R Training for USBC: Session2
+This repository is for the codes, data and tutorials for Session 2 of R Training for USBC. Please copy and paste the codes in a new script in R-Studio and follow the discussion.
+
+## Part 1: Housekeeping and Handy tools for starting an R session
+The following commands can be useful when starting a new R session. But first of all let's bring in some demo data.
+
+### Bring in some demo data
+The `mtcars` data is a default built-in dataset that comes with standard R installation (under package 'graphics'). It is a data frame with 32 observations of car data on 11 variables.
+
+```
+# To see the matcars data execute
+mtcars
+? mtcars #  it says "what is mtcars?". Applicable for any R default functions/data
+car_data <- mtcars # saving the data in local R environment 
+```
 
 ### Starting a new R session
 ```
@@ -31,6 +42,15 @@ complete = subset(data.df,complete.cases(data.df)) #find those cases with no mis
 new=old[n1:n2,n3:n4]    #select the n1 through n2 rows of variables n3 through n4)
 which.max(object) # gives the index of the hightest value
 ```
+### To view VARIABLE Properties
+```
+mode() #shows data is numeric or string ie. how tha data is stored
+class() # shows if data is Matrix, Data frame, list, factor etc
+str() # show further details attribute of the data i.e. STRUCTURE
+summary() # shows most information with max, min, etc.
+unique(unlist(x), use.names=FALSE) # shows only the unique values of an variable
+```
+
 ## Part 2: Data Wrangling and Tidy data
 
 ## Part 3: Mapping in R
