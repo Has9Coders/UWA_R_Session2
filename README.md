@@ -67,6 +67,8 @@ class() # shows if data is Matrix, Data frame, list, factor etc
 str() # show further details attribute of the data i.e. STRUCTURE
 summary() # shows most information with max, min, etc.
 unique(unlist(x), use.names=FALSE) # shows only the unique values of an variable
+# To see all the colors in R in one line of code
+scales::show_col(colours(), cex_label = .35)
 ```
 
 ## Part 2: Data Wrangling and Tidy data
