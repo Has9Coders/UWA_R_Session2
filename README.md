@@ -369,6 +369,19 @@ It should look like:
 
 ## Part 3: Mapping in R
 
+The following figures shows R's mapping capacity, which is often better than many standard GIS software.
+
+![PhD Study Site](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Screenshots/Thesis_HasneinTareque_StudySite.pdf.png)
+
+Figure: Study site map of my PhD research
+
+![GW_Contours](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Screenshots/Thesis_HasneinTareque_GWContours.pdf.png)
+
+Figure: Combination of multiple sets of information in one figure (from my PhD thesis)
+
+![BD research outputs](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Screenshots/ThunderStormResults.png)
+
+Figure: Results of Thunderstorm analysis in Bangladesh
 ## Part 4: References and Next Steps
 
 1. Vignette of any of the packages (google it or in R console run `vignette("package-name")`
