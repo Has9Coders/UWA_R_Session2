@@ -5,7 +5,10 @@ This repository is for the codes, data and tutorials for Session 2 of R Training
 The following commands can be useful when starting a new R session. But first of all let's bring in some demo data.
 
 ### Bring in some demo data
-The `mtcars` data is a default built-in dataset that comes with standard R installation (under package 'graphics'). It is a data frame with 32 observations of car data on 11 variables.
+The `mtcars` data is a default built-in dataset that comes with standard R installation (under package 'car'). It is a data frame with 32 observations of car data on 11 variables.
+
+![alt text](https://github.com/Has9Coders/UWA_R_Session2/.png "Logo Title Text 1")
+
 | Col No | Col Name | Description                              |
 |:--------|:----------|:------------------------------------------|
 | [, 1]  | mpg      | Miles/(US) gallon                        |
@@ -21,9 +24,8 @@ The `mtcars` data is a default built-in dataset that comes with standard R insta
 | [,11]  | carb     | Number of carburetors                    |
 
 
-Source:
-
-Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.
+*Source:
+Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.*
 
 ```
 # To see the matcars data execute
@@ -67,6 +69,8 @@ class() # shows if data is Matrix, Data frame, list, factor etc
 str() # show further details attribute of the data i.e. STRUCTURE
 summary() # shows most information with max, min, etc.
 unique(unlist(x), use.names=FALSE) # shows only the unique values of an variable
+# To see all the colors in R in one line of code
+scales::show_col(colours(), cex_label = .35)
 ```
 
 ## Part 2: Data Wrangling and Tidy data
