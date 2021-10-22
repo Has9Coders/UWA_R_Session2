@@ -54,7 +54,7 @@ dim(object)  #Dimensions of an object.
 rm(list=ls()) # remove most objects from workspace
 fix(data) # open data in editable format i.e. notepad. good to see list objects
 new=old[,-n]            #drop the nth column
-new=old[n,]             #drop the nth row
+new=old[-n,]             #drop the nth row
 new=subset(old,logical) #select those cases that meet the logical condition
 complete = subset(data.df,complete.cases(data.df)) #find those cases with no missing values
 new=old[n1:n2,n3:n4]    #select the n1 through n2 rows of variables n3 through n4)
