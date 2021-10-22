@@ -368,7 +368,24 @@ It should look like:
 *2. Tidy Data by Hadley Wickham, http://www.jstatsoft.org/v59/i10/paper*
 
 ## Part 3: Mapping in R
+R has outstanding capacity of handling spatial and GIS data. It has come a long way from plotting some basic spatial data to very complex geo-statistical analysis as well as advanced remote sensing satellite data handling. This is a whole specialized domain and beyond the scope of this session, but anyone can take advantage of this amazing capability.
 
+Today we will do a very basic map plotting using google map API and define our own area of interest. Please copy the following code in a script in R-Studio and follow the discussion
+
+```r
+library(dismo)
+require(RgoogleMaps)
+
+newmap <- GetMap(center = c(-31.980350610423013, 115.8186768018108), 
+            zoom = 16, maptype="roadmap", 
+            destfile = "newmap.png", 
+                 size = c(840, 840))
+
+PlotOnStaticMap(newmap)
+
+mypolygon <- drawPoly()
+summary(mypolygon)
+```
 The following figures shows R's mapping capacity, which is often better than many standard GIS software.
 
 ![PhD Study Site](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Screenshots/Thesis_HasneinTareque_StudySite.pdf.png)
@@ -382,6 +399,10 @@ Figure: Combination of multiple sets of information in one figure (from my PhD t
 ![BD research outputs](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Screenshots/ThunderStormResults.png)
 
 Figure: Results of Thunderstorm analysis in Bangladesh
+
+![](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Image/urban-animated.gif)
+
+Figure: Animated map of world population
 ## Part 4: References and Next Steps
 
 1. Vignette of any of the packages (google it or in R console run `vignette("package-name")`
