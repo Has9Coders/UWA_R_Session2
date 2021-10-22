@@ -411,3 +411,4 @@ Figure: Animated map of world population
 4. For video classes, use Udemy, EdX or Data Science Bootcamp 
 5. For plot/graph inspirations (with codes): [Visit R Graph Gallary](https://www.r-graph-gallery.com/)
 6. Cheatsheets for particular package. Print and keep them handy in your desk.
+7. [Introduction to visualising spatial data in R](https://cran.r-project.org/doc/contrib/intro-spatial-rl.pdf)
