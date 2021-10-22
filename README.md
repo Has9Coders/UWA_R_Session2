@@ -359,7 +359,7 @@ It should look like:
 #> 6 China       2000  1280428583
 ```
 
-**CONGRATULAIONS, you have covered the basics of data wrangling in R**
+**CONGRATULATIONS, you have covered the basics of data wrangling in R**
 
 *Source:*
 
