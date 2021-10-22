@@ -35,7 +35,7 @@ car_data <- mtcars # saving the data in local R environment
 ```
 
 ### 1.2. Routine checks and saving R adata after starting a new R session
-```
+```R
 getwd() # Get the working directory
 ls()    # list the objects in the current workspace/ R.data
 list.files() # list the files in the cwd
@@ -47,7 +47,7 @@ loadhistory(file="myfile") # # recall your command history default is ".Rhistory
 save.image("File_Name.RData") # save the workspace to the file .RData in the cwd 
 ```
 ### 1.3. Viewing and Deleting data
-```
+```r
 ctrl+L #Clear the console
 head(object)  #Lists the first part of the object.
 tail(object)  #Lists the last part of the object.
@@ -63,7 +63,7 @@ new=old[n1:n2,n3:n4]    #select the n1 through n2 rows of variables n3 through n
 which.max(object) # gives the index of the hightest value
 ```
 ### 1.4. To view VARIABLE Properties
-```
+```R
 mode() #shows data is numeric or string ie. how tha data is stored
 class() # shows if data is Matrix, Data frame, list, factor etc
 str() # show further details attribute of the data i.e. STRUCTURE
@@ -81,6 +81,8 @@ scales::show_col(colours(), cex_label = .35)
 
 We are going to to use two packages here to learn some basic (advanced at the same time!) data wrangling and tidying using `dplyr` and `tidyr`.
 
+![dplyr and tidyr](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Image/dplyr_tidyr.jpg "dplyr and tidyr in action")
+
 #### What is dplyr and tidyr?
 dplyr and tidyr are powerful R-package to transform and summarize tabular data with rows and columns. For further explanation of dplyr and tidyr see the package vignette.
 
@@ -89,6 +91,22 @@ The packages contains a set of functions (or “verbs”) that perform common da
 
 #### How does it compare to using base functions R?
 If you are familiar with R, you are probably familiar with base R functions such as split(), subset(), apply(), sapply(), lapply(), tapply() and aggregate(). Compared to base functions in R, the functions in dplyr are easier to work with, are more consistent in the syntax and are targeted for data analysis around data frames instead of just vectors.
+
+#### Important basic concepts
+>>**The pipe %>%**
+
+We often want to string together a series of dplyr functions. This is achieved using dplyr’s pipe operator, %>%. This takes the value on the left, and passes it as the first argument to the function call on the right. So the previous summarization could be written:
+
+`scoretab %>% group_by(grade) %>% summarize(count=n())`
+%>% isn’t limited to dplyr functions. It’s an alternative way of writing any R code.
+
+```r
+rep(paste("hello", "world"), 5)
+## [1] "hello world" "hello world" "hello world" "hello world" "hello world"
+"hello" %>% paste("world") %>% rep(5)
+## [1] "hello world" "hello world" "hello world" "hello world" "hello world"
+```
+The idea of adding geoms in ggplot2 is rather like the dplyr pipe. ggplot2 predates dplyr, and Hadley Wickham has had a progression of ideas. It will probably be possible to use %>% instead of + in some successor to ggplot2 in the not too distant future.
 
 ## Part 3: Mapping in R
 
