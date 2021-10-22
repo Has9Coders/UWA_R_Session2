@@ -4,10 +4,10 @@ This repository is for the codes, data and tutorials for Session 2 of R Training
 ## Part 1: Housekeeping and Handy tools for starting an R session
 The following commands can be useful when starting a new R session. But first of all let's bring in some demo data.
 
-### Bring in some demo data
+### 1.1. Bring in some demo data
 The `mtcars` data is a default built-in dataset that comes with standard R installation (under package 'car'). It is a data frame with 32 observations of car data on 11 variables.
 
-![alt text](https://github.com/Has9Coders/UWA_R_Session2/.png "Logo Title Text 1")
+![MazdaRX4](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Image/MazdaRX4.jpg "MazdaRX4")
 
 | Col No | Col Name | Description                              |
 |:--------|:----------|:------------------------------------------|
@@ -34,7 +34,7 @@ mtcars
 car_data <- mtcars # saving the data in local R environment 
 ```
 
-### Starting a new R session
+### 1.2. Routine checks and saving R adata after starting a new R session
 ```
 getwd() # Get the working directory
 ls()    # list the objects in the current workspace/ R.data
@@ -46,7 +46,7 @@ savehistory(file="myfile") # # save your command history default is ".Rhistory"
 loadhistory(file="myfile") # # recall your command history default is ".Rhistory"
 save.image("File_Name.RData") # save the workspace to the file .RData in the cwd 
 ```
-### Viewing and Deleting data
+### 1.3. Viewing and Deleting data
 ```
 ctrl+L #Clear the console
 head(object)  #Lists the first part of the object.
@@ -62,7 +62,7 @@ complete = subset(data.df,complete.cases(data.df)) #find those cases with no mis
 new=old[n1:n2,n3:n4]    #select the n1 through n2 rows of variables n3 through n4)
 which.max(object) # gives the index of the hightest value
 ```
-### To view VARIABLE Properties
+### 1.4. To view VARIABLE Properties
 ```
 mode() #shows data is numeric or string ie. how tha data is stored
 class() # shows if data is Matrix, Data frame, list, factor etc
