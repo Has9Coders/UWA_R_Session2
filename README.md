@@ -75,4 +75,28 @@ scales::show_col(colours(), cex_label = .35)
 
 ## Part 2: Data Wrangling and Tidy data
 
+>“Happy families are all alike; every unhappy family is unhappy in its own way.” –– Leo Tolstoy
+
+>“Tidy datasets are all alike, but every messy dataset is messy in its own way.” –– Hadley Wickham
+
+We are going to to use two packages here to learn some basic (advanced at the same time!) data wrangling and tidying using `dplyr` and `tidyr`.
+
+#### What is dplyr and tidyr?
+dplyr and tidyr are powerful R-package to transform and summarize tabular data with rows and columns. For further explanation of dplyr and tidyr see the package vignette.
+
+#### Why is it useful?
+The packages contains a set of functions (or “verbs”) that perform common data manipulation operations such as filtering for rows, selecting specific columns, re-ordering rows, adding new columns and summarizing data.
+
+#### How does it compare to using base functions R?
+If you are familiar with R, you are probably familiar with base R functions such as split(), subset(), apply(), sapply(), lapply(), tapply() and aggregate(). Compared to base functions in R, the functions in dplyr are easier to work with, are more consistent in the syntax and are targeted for data analysis around data frames instead of just vectors.
+
 ## Part 3: Mapping in R
+
+## Part 4: References and Next Steps
+
+1. Vignette of any of the packages (google it or in R console run `vignette("package-name")`
+2. One easy stop for learning R: [R for Data Science](https://r4ds.had.co.nz/index.html)
+3. Use R! book series from library, free pdfs from google or buy from Amazon
+4. For video classes, use Udemy, EdX or Data Science Bootcamp 
+5. For plot/graph inspirations (with codes): [Visit R Graph Gallary](https://www.r-graph-gallery.com/)
+6. Cheatsheets for particular package. Print and keep them handy in your desk.
