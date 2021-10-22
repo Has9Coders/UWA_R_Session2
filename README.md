@@ -113,6 +113,7 @@ The idea of adding geoms in ggplot2 is rather like the dplyr pipe. ggplot2 preda
 ### 2.2. Getting the data
 
 The msleep (mammals sleep) data set contains the sleeptimes and weights for a set of mammals and is available in the dagdata repository on github. This data set contains 83 rows and 11 variables.
+![Mammals_Sleep](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Image/avg_mammals_sleep_total.jpg)
 
 Download (if you have not already) the msleep data set in CSV format from the Data folder, and then load into R. This is something you can do in many ways, using GUI or 1 line of code or combining both.
 
