@@ -131,7 +131,7 @@ Download the msleep data set in CSV format from here, and then load into R:
 
 ```r
 library(downloader)
-url <- "https://raw.githubusercontent.com/genomicsclass/dagdata/master/inst/extdata/msleep_ggplot2.csv"
+url <- "https://github.com/Has9Coders/UWA_R_Session2/blob/main/Data/msleep_ggplot2.csv"
 filename <- "msleep_ggplot2.csv"
 if (!file.exists(filename)) download(url,filename)
 msleep <- read.csv("msleep_ggplot2.csv")
