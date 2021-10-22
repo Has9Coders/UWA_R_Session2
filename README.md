@@ -76,3 +76,11 @@ scales::show_col(colours(), cex_label = .35)
 ## Part 2: Data Wrangling and Tidy data
 
 ## Part 3: Mapping in R
+
+## Part 4: References and Next Steps
+
+1. Vignette of any of the packages (google it or in R console run `vignette("package-name")`
+2. One easy stop for learning R: [R for Data Science](https://r4ds.had.co.nz/index.html)
+3. Use R! book series from library, free pdfs from google or buy from Amazon
+4. For video classes, use Udemy, EdX or Data Science Bootcamp 
+5. For plot/graph inspirations: [Visit R Graph Gallary](https://www.r-graph-gallery.com/)
