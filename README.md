@@ -303,7 +303,63 @@ There are **three interrelated rules** which make a dataset tidy:
 The figure below shows the rules graphically
 ![tidyDataRules](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Image/tidyData-Rules.png)
 
+### Making wide data long
 
+A common problem is a dataset where some of the column names are not names of variables, but values of a variable. Take table4a: the column names 1999 and 2000 represent values of the year variable, the values in the 1999 and 2000 columns represent values of the cases variable, and each row represents two observations, not one.
+
+```
+table4a
+#> # A tibble: 3 x 3
+#>   country     `1999` `2000`
+#> * <chr>        <int>  <int>
+#> 1 Afghanistan    745   2666
+#> 2 Brazil       37737  80488
+#> 3 China       212258 213766
+```
+
+To tidy a dataset like this, we need to pivot the offending columns into a new pair of variables. To describe that operation we need three parameters:
+
+* The set of columns whose names are values, not variables. In this example, those are the columns 1999 and 2000.
+
+* The name of the variable to move the column names to. Here it is year.
+
+* The name of the variable to move the column values to. Here it’s cases.
+
+![wideVsLong](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Image/Wide_vs_long_data.png)
+
+Together those parameters generate the call to `pivot_longer()`:
+
+```r
+table4a %>% 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+
+#> # A tibble: 6 x 3
+#>   country     year   cases
+#>   <chr>       <chr>  <int>
+#> 1 Afghanistan 1999     745
+#> 2 Afghanistan 2000    2666
+#> 3 Brazil      1999   37737
+#> 4 Brazil      2000   80488
+#> 5 China       1999  212258
+#> 6 China       2000  213766
+
+```
+**QUIZ:** Use `pivot_longer()` to tidy `table4b` in a similar fashion. The only difference is the variable stored in the cell values. 
+It should look like:
+
+```r
+#> # A tibble: 6 x 3
+#>   country     year  population
+#>   <chr>       <chr>      <int>
+#> 1 Afghanistan 1999    19987071
+#> 2 Afghanistan 2000    20595360
+#> 3 Brazil      1999   172006362
+#> 4 Brazil      2000   174504898
+#> 5 China       1999  1272915272
+#> 6 China       2000  1280428583
+```
+
+**CONGRATULAIONS, you have covered the basics of data wrangling in R**
 
 *Source:*
 
