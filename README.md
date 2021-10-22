@@ -74,6 +74,7 @@ scales::show_col(colours(), cex_label = .35)
 ```
 
 ## Part 2: Data Wrangling and Tidy data
+### 2.1 Introduction
 
 >“Happy families are all alike; every unhappy family is unhappy in its own way.” –– Leo Tolstoy
 
@@ -108,6 +109,21 @@ rep(paste("hello", "world"), 5)
 ```
 The idea of adding geoms in ggplot2 is rather like the dplyr pipe. ggplot2 predates dplyr, and Hadley Wickham has had a progression of ideas. It will probably be possible to use %>% instead of + in some successor to ggplot2 in the not too distant future.
 
+### 2.2. Getting the data
+
+|  column name |              Description              |
+|:------------:|:-------------------------------------|
+| name         | common name                           |
+| genus        | taxonomic rank                        |
+| vore         | carnivore, omnivore or herbivore?     |
+| order        | taxonomic rank                        |
+| conservation | the conservation status of the mammal |
+| sleep_total  | total amount of sleep, in hours       |
+| sleep_rem    | rem sleep, in hours                   |
+| sleep_cycle  | length of sleep cycle, in hours       |
+| awake        | amount of time spent awake, in hours  |
+| brainwt      | brain weight in kilograms             |
+| bodywt       | body weight in kilograms              |
 ## Part 3: Mapping in R
 
 ## Part 4: References and Next Steps
