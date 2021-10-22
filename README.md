@@ -103,6 +103,7 @@ We often want to string together a series of dplyr functions. This is achieved u
 %>% isn’t limited to dplyr functions. It’s an alternative way of writing any R code.
 
 ```r
+library(tidyverse)
 rep(paste("hello", "world"), 5)
 ## [1] "hello world" "hello world" "hello world" "hello world" "hello world"
 "hello" %>% paste("world") %>% rep(5)
@@ -278,6 +279,32 @@ msleep %>%
               total = n())
 ```
 ### 2.4. Converting long and wide data using `tidyr`
+
+You can represent the same underlying data in multiple ways. The example below shows the same data organised in four different ways. Each dataset shows the same values of four variables country, year, population, and cases, but each dataset organises the values in a different way.
+
+Explore some data and notice how the rows, columns and cells are organized.
+```r
+table1
+table2
+table3
+table4a
+table4b
+```
+These are all representations of the same underlying data, but they are not equally easy to use. One dataset, the tidy dataset, will be much easier to work with inside the tidyverse.
+
+There are three interrelated rules which make a dataset tidy:
+**1. Each variable must have its own column.
+**2. Each observation must have its own row.
+**3. Each value must have its own cell.**
+
+The figure below shows the rules graphically
+![tidyDataRules](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Image/tidyData-Rules.png)
+
+
+
+*Source: 
+*1. R for data Science, Hadley Wickham, et.al.
+*2. Tidy Data by Hadley Wickham, http://www.jstatsoft.org/v59/i10/paper*
 
 ## Part 3: Mapping in R
 
