@@ -40,6 +40,7 @@ getwd() # Get the working directory
 ls()    # list the objects in the current workspace/ R.data
 list.files() # list the files in the cwd
 setwd("c:/docs/mydir")  # Set the current working directory **note / instead of \ in windows
+# Several options for setting working directory in R studio. One is from menu "Session>Set Working Directory>"
 history() # display last 25 commands
 history(max.show=Inf) # display all previous commands
 savehistory(file="myfile") # # save your command history default is ".Rhistory" 
@@ -130,13 +131,200 @@ Download the msleep data set in CSV format from here, and then load into R:
 | bodywt       | body weight in kilograms              |
 
 ```r
-library(downloader)
-url <- "https://github.com/Has9Coders/UWA_R_Session2/blob/main/Data/msleep_ggplot2.csv"
-filename <- "msleep_ggplot2.csv"
-if (!file.exists(filename)) download(url,filename)
-msleep <- read.csv("msleep_ggplot2.csv")
+library(readr)
+urlfile <- "https://raw.githubusercontent.com/Has9Coders/UWA_R_Session2/main/Data/msleep_ggplot2.csv"
+msleep <- read.csv(url(urlfile))
 head(msleep)
 ```
+### Important `dplyr` verbs to remember:
+
+| dplyr verbs |                            Description                           |
+|:-----------:|:-----------------------------------------------------------------|
+| `select()`  | select columns                                                   |
+| `filter()`    | filter rows                                                      |
+| `arrange()`   | re-order or arrange rows                                         |
+| `mutate()`    | create new columns                                               |
+| `summarise()` | summarise values                                                 |
+| `group_by()`  | allows for group operations in the “split-apply-combine” concept |
+
+### dplyr verbs in action
+The two most basic functions are select() and filter() which selects columns and filters rows, respectively.
+
+Selecting columns using select()
+Select a set of columns: the name and the sleep_total columns.
+```R
+sleepData <- select(msleep, name, sleep_total)
+head(sleepData)
+
+#To select all the columns except a specific column, use the “-“ (subtraction) operator (also known as negative indexing)
+
+head(select(msleep, -name))
+
+# To select a range of columns by name, use the “:” (colon) operator
+
+head(select(msleep, name:order))
+
+# To select all columns that start with the character string “sl”, use the function starts_with()
+
+head(select(msleep, starts_with("sl")))
+```
+Some additional options to select columns based on a specific criteria include
+
+|                      dplyr select options                      |
+|:---------------------------------------------------------------|
+| ends_with() = Select columns that end with a character string  |
+| contains() = Select columns that contain a character string    |
+| matches() = Select columns that match a regular expression     |
+| one_of() = Select columns names that are from a group of names |
+
+### Selecting rows using filter()
+Filter the rows for mammals that sleep a total of more than 16 hours.
+```r
+filter(msleep, sleep_total >= 16)
+
+# QUIZ: Filter the rows for mammals that sleep a total of more than 16 hours and have a body weight of greater than 1 kilogram.
+
+
+# Filter the rows for mammals in the Perissodactyla and Primates taxonomic order
+
+filter(msleep, order %in% c("Perissodactyla", "Primates"))
+# You can use the boolean operators (e.g. >, <, >=, <=, !=, %in%) to create the logical tests.
+```
+
+### Pipe operator: %>%
+
+Here’s an example you have seen:
+
+`head(select(msleep, name, sleep_total))`
+
+Now in this case, we will pipe the msleep data frame to the function that will select two columns (name and sleep_total) and then pipe the new data frame to the function head() which will return the head of the new data frame.
+```r
+msleep %>% 
+    select(name, sleep_total) %>% 
+    head
+```
+You will soon see how useful the pipe operator is when we start to combine many functions.
+
+### Back to dplyr verbs in action
+Now that you know about the pipe operator (%>%), we will use it throughout the rest of this tutorial.
+
+Arrange or re-order rows using arrange()
+To arrange (or re-order) rows by a particular column such as the taxonomic order, list the name of the column you want to arrange the rows by
+
+```r
+msleep %>% arrange(order) %>% head
+
+# Now, we will select three columns from msleep, arrange the rows by the taxonomic order and then arrange the rows by sleep_total. Finally show the head of the final data frame
+
+msleep %>% 
+    select(name, order, sleep_total) %>%
+    arrange(order, sleep_total) %>% 
+    head
+
+# Same as above, except here we filter the rows for mammals that sleep for 16 or more hours instead of showing the head of the final data frame
+
+msleep %>% 
+    select(name, order, sleep_total) %>%
+    arrange(order, sleep_total) %>% 
+    filter(sleep_total >= 16)
+##                     name           order sleep_total
+## 1          Big brown bat      Chiroptera        19.7
+## 2       Little brown bat      Chiroptera        19.9
+## 3   Long-nosed armadillo       Cingulata        17.4
+## 4        Giant armadillo       Cingulata        18.1
+## 5 North American Opossum Didelphimorphia        18.0
+## 6   Thick-tailed opposum Didelphimorphia        19.4
+## 7             Owl monkey        Primates        17.0
+## 8 Arctic ground squirrel        Rodentia        16.6
+Something slightly more complicated: same as above, except arrange the rows in the sleep_total column in a descending order. For this, use the function desc()
+
+msleep %>% 
+    select(name, order, sleep_total) %>%
+    arrange(order, desc(sleep_total)) %>% 
+    filter(sleep_total >= 16)
+##                     name           order sleep_total
+## 1       Little brown bat      Chiroptera        19.9
+## 2          Big brown bat      Chiroptera        19.7
+## 3        Giant armadillo       Cingulata        18.1
+## 4   Long-nosed armadillo       Cingulata        17.4
+## 5   Thick-tailed opposum Didelphimorphia        19.4
+## 6 North American Opossum Didelphimorphia        18.0
+## 7             Owl monkey        Primates        17.0
+## 8 Arctic ground squirrel        Rodentia        16.6
+Create new columns using mutate()
+The mutate() function will add new columns to the data frame. Create a new column called rem_proportion which is the ratio of rem sleep to total amount of sleep.
+
+msleep %>% 
+    mutate(rem_proportion = sleep_rem / sleep_total) %>%
+    head
+##                         name      genus  vore        order conservation
+## 1                    Cheetah   Acinonyx carni    Carnivora           lc
+## 2                 Owl monkey      Aotus  omni     Primates         <NA>
+## 3            Mountain beaver Aplodontia herbi     Rodentia           nt
+## 4 Greater short-tailed shrew    Blarina  omni Soricomorpha           lc
+## 5                        Cow        Bos herbi Artiodactyla domesticated
+## 6           Three-toed sloth   Bradypus herbi       Pilosa         <NA>
+##   sleep_total sleep_rem sleep_cycle awake brainwt  bodywt rem_proportion
+## 1        12.1        NA          NA  11.9      NA  50.000             NA
+## 2        17.0       1.8          NA   7.0 0.01550   0.480      0.1058824
+## 3        14.4       2.4          NA   9.6      NA   1.350      0.1666667
+## 4        14.9       2.3   0.1333333   9.1 0.00029   0.019      0.1543624
+## 5         4.0       0.7   0.6666667  20.0 0.42300 600.000      0.1750000
+## 6        14.4       2.2   0.7666667   9.6      NA   3.850      0.1527778
+You can many new columns using mutate (separated by commas). Here we add a second column called bodywt_grams which is the bodywt column in grams.
+
+msleep %>% 
+    mutate(rem_proportion = sleep_rem / sleep_total, 
+           bodywt_grams = bodywt * 1000) %>%
+    head
+##                         name      genus  vore        order conservation
+## 1                    Cheetah   Acinonyx carni    Carnivora           lc
+## 2                 Owl monkey      Aotus  omni     Primates         <NA>
+## 3            Mountain beaver Aplodontia herbi     Rodentia           nt
+## 4 Greater short-tailed shrew    Blarina  omni Soricomorpha           lc
+## 5                        Cow        Bos herbi Artiodactyla domesticated
+## 6           Three-toed sloth   Bradypus herbi       Pilosa         <NA>
+##   sleep_total sleep_rem sleep_cycle awake brainwt  bodywt rem_proportion
+## 1        12.1        NA          NA  11.9      NA  50.000             NA
+## 2        17.0       1.8          NA   7.0 0.01550   0.480      0.1058824
+## 3        14.4       2.4          NA   9.6      NA   1.350      0.1666667
+## 4        14.9       2.3   0.1333333   9.1 0.00029   0.019      0.1543624
+## 5         4.0       0.7   0.6666667  20.0 0.42300 600.000      0.1750000
+## 6        14.4       2.2   0.7666667   9.6      NA   3.850      0.1527778
+##   bodywt_grams
+## 1        50000
+## 2          480
+## 3         1350
+## 4           19
+## 5       600000
+## 6         3850
+Create summaries of the data frame using summarise()
+The summarise() function will create summary statistics for a given column in the data frame such as finding the mean. For example, to compute the average number of hours of sleep, apply the mean() function to the column sleep_total and call the summary value avg_sleep.
+
+msleep %>% 
+    summarise(avg_sleep = mean(sleep_total))
+##   avg_sleep
+## 1  10.43373
+There are many other summary statistics you could consider such sd(), min(), max(), median(), sum(), n() (returns the length of vector), first() (returns first value in vector), last() (returns last value in vector) and n_distinct() (number of distinct values in vector).
+
+msleep %>% 
+    summarise(avg_sleep = mean(sleep_total), 
+              min_sleep = min(sleep_total),
+              max_sleep = max(sleep_total),
+              total = n())
+##   avg_sleep min_sleep max_sleep total
+## 1  10.43373       1.9      19.9    83
+Group operations using group_by()
+The group_by() verb is an important function in dplyr. As we mentioned before it’s related to concept of “split-apply-combine”. We literally want to split the data frame by some variable (e.g. taxonomic order), apply a function to the individual data frames and then combine the output.
+
+Let’s do that: split the msleep data frame by the taxonomic order, then ask for the same summary statistics as above. We expect a set of summary statistics for each taxonomic order.
+
+msleep %>% 
+    group_by(order) %>%
+    summarise(avg_sleep = mean(sleep_total), 
+              min_sleep = min(sleep_total), 
+              max_sleep = max(sleep_total),
+              total = n())
 
 ## Part 3: Mapping in R
 
