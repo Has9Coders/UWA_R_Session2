@@ -292,18 +292,23 @@ table4b
 ```
 These are all representations of the same underlying data, but they are not equally easy to use. One dataset, the tidy dataset, will be much easier to work with inside the tidyverse.
 
-There are three interrelated rules which make a dataset tidy:
-**1. Each variable must have its own column.
-**2. Each observation must have its own row.
-**3. Each value must have its own cell.**
+There are **three interrelated rules** which make a dataset tidy:
+
+***
+1. Each variable must have its own column.
+2. Each observation must have its own row.
+3. Each value must have its own cell.
+***
 
 The figure below shows the rules graphically
 ![tidyDataRules](https://github.com/Has9Coders/UWA_R_Session2/blob/main/Image/tidyData-Rules.png)
 
 
 
-*Source: 
-*1. R for data Science, Hadley Wickham, et.al.
+*Source:*
+
+*1. R for data Science, Hadley Wickham, et.al.*
+
 *2. Tidy Data by Hadley Wickham, http://www.jstatsoft.org/v59/i10/paper*
 
 ## Part 3: Mapping in R
